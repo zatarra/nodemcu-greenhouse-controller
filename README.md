@@ -14,8 +14,11 @@ The hardware requirements are:
 NodeMCU exposes several endpoints that can be used to retrieve information from the sensors and relays, e.g.: 
 
 http://nodemcu/status
+
 http://nodemcu/relays/status
+
 http://nodemcu/relays/enable/1
+
 http://nodemcu/relays/disable/3
 
 
