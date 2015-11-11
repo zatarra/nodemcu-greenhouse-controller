@@ -1,5 +1,5 @@
 i2c.setup(0, _G["lcd_sda"], _G["lcd_scl"], i2c.SLOW)
-lcd = dofile("lcdlib.lua")()
+local lcd = dofile("lcdlib.lua")()
 
 function execute() 
   -- Integer firmware using this example
@@ -11,8 +11,8 @@ end
 
 
 -- Timer to refresh
-timerId=0
-timerDelay = 5000
+local timerId=1
+local timerDelay = 5000
 tmr.alarm(timerId, timerDelay, 1, function()
   lcd.clear()
   execute()

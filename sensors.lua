@@ -1,6 +1,6 @@
 function execute() 
-  status,temp,humi,temp_decimial,humi_decimial = dht.read11(dht_pin)
-  print(status)
+  local status,temp,humi,temp_decimial,humi_decimial = dht.read11(1)
+ 
   if( status == dht.OK ) then
   
   -- Integer firmware using this example
@@ -23,8 +23,8 @@ function execute()
  end
 
  
-timerId=3
-timerDelay = 5000
+local timerId=0
+local timerDelay = 5000
 tmr.alarm(timerId, timerDelay, 1, function()
   execute()
   collectgarbage()
