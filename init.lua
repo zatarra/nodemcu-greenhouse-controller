@@ -1,6 +1,6 @@
 wifi.setmode(wifi.STATION)
 
-wifi.sta.config("***********", "***********")
+wifi.sta.config("", "")
 
 wifi.sta.autoconnect(1)
 wifi.sta.connect()
@@ -14,8 +14,8 @@ print(wifi.sta.status())
 _G["dht_pin"] = 1
 _G["light_pin"] = 2
 
-_G["lcd_sda"] = 3
-_G["lcd_scl"] = 4
+_G["lcd_sda"] = 4
+_G["lcd_scl"] = 5
 
 -- The idea is to restore the state of relays from a file. For demo purposes I'll leave it like this for now...
 
@@ -50,6 +50,6 @@ _G["light"] = "N/A"
 dofile("sensors.lua")
 --dofile("lcd.lua")
 dofile("webinterface.lua")
-dofile("post.lua")
+
 --dofile("relays.lua")
 

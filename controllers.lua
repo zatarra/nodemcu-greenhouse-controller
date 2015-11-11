@@ -42,11 +42,13 @@ function M.execute(args)
         buff = formatMessage("error", "Invalid relay number passed")
       else
         gpio.write(_G["relay"][value]["pin"], gpio.HIGH)
+        _G["relay"][value]["state"] = true
         buff = formatMessage("success", "Relay #" .. value .. " enabled")
       end
     elseif action == "disable" then
       if value > 0 and value < 9 then
         gpio.write(_G["relay"][value]["pin"], gpio.LOW)
+        _G["relay"][value]["state"] = false
         buff = formatMessage("success", "Relay #" .. value .. " disabled")
       end
     else
