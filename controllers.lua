@@ -1,17 +1,13 @@
 -- Controller for the web interface
 
 local M = {}
+local s = require("settings")
 
 function M.execute(args)
 
   local controller = args:match("([^/]+)/?")
   local action     = args:match("[^/]+/([^/]+)/?")
   local value      = args:match("[^/]+/[^/]+/([^/]+)")
-  
-  
-  print(controller)
-  print(action)
-  print(value)
   
   local buff = ""
   
@@ -44,13 +40,19 @@ function M.execute(args)
         gpio.write(_G["relay"][value]["pin"], gpio.HIGH)
         _G["relay"][value]["state"] = true
         buff = formatMessage("success", "Relay #" .. value .. " enabled")
+        _G["settings"].setRelayStatus()
+        _G["settings"].getRelayStatus()
       end
+      
+      
     elseif action == "disable" then
       if value > 0 and value < 9 then
         gpio.write(_G["relay"][value]["pin"], gpio.LOW)
         _G["relay"][value]["state"] = false
         buff = formatMessage("success", "Relay #" .. value .. " disabled")
-      end
+        _G["settings"].setRelayStatus()
+        _G["settings"].getRelayStatus()
+      end        
     else
       buff = formatMessage("error", "Invalid relay action")
     end
@@ -58,12 +60,9 @@ function M.execute(args)
   else
     buff = formatMessage("error", "Invalid call")
   end
-   
-
-        
+         
   return buff
 
- 
 end
 
   function formatMessage(code, message)

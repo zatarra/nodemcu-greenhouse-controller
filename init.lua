@@ -8,14 +8,15 @@ tmr.delay(1000000)
 wifi.sta.getip()
 print(wifi.sta.status())
 
+_G["settings"] = require("settings")
 
 -- Setup relays and sensor pins
 
 _G["dht_pin"] = 1
 _G["light_pin"] = 2
 
-_G["lcd_sda"] = 4
-_G["lcd_scl"] = 5
+_G["lcd_sda"] = 3
+_G["lcd_scl"] = 4
 
 -- The idea is to restore the state of relays from a file. For demo purposes I'll leave it like this for now...
 
@@ -51,5 +52,6 @@ dofile("sensors.lua")
 --dofile("lcd.lua")
 dofile("webinterface.lua")
 
+_G["settings"].getRelayStatus()
 --dofile("relays.lua")
 
